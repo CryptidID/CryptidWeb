@@ -1,0 +1,211 @@
+@font-face {
+    font-family: 'noodle';
+    src: url('../fonts/big_noodle_titling-webfont.eot');
+    src: url('../fonts/big_noodle_titling-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/big_noodle_titling-webfont.woff2') format('woff2'), url('fonts/big_noodle_titling-webfont.woff') format('woff'), url('fonts/big_noodle_titling-webfont.ttf') format('truetype'), url('fonts/big_noodle_titling-webfont.svg#bignoodletitlingregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'gravity';
+    src: url('../fonts/gravity-bold-webfont.eot');
+    src: url('../fonts/gravity-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/gravity-bold-webfont.woff2') format('woff2'),
+         url('../fonts/gravity-bold-webfont.woff') format('woff'),
+         url('../fonts/gravity-bold-webfont.ttf') format('truetype'),
+         url('../fonts/gravity-bold-webfont.svg#gravitybold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'gravity';
+    src: url('../fonts/gravity-book-webfont.eot');
+    src: url('../fonts/gravity-book-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/gravity-book-webfont.woff2') format('woff2'),
+         url('../fonts/gravity-book-webfont.woff') format('woff'),
+         url('../fonts/gravity-book-webfont.ttf') format('truetype'),
+         url('../fonts/gravity-book-webfont.svg#gravitybook') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: gravity;
+}
+@media(min-width:767px) {
+    .navbar {
+        padding: 20px 0;
+        -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        transition: background .5s ease-in-out,padding .5s ease-in-out;
+    }
+
+    .top-nav-collapse {
+        padding: 0;
+    }
+}
+#header {
+    display: block;
+    overflow: auto;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: white;
+    background-position: center 150px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: 1px solid rgba(0, 0, 0, .5);
+}
+#hero {
+    background: url('../img/bg-2.jpg') center;
+    width: 100%;
+    height: 100%;
+    background-position: cover;
+    padding-top: 145px;
+}
+#hero-call {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    margin-top: -12.5%;
+}
+.navbar {
+    padding: 20px 40px;
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(33, 119, 225, 0);
+    border: none;
+    margin-bottom: 0;
+}
+.navbar.top-nav-collapse {
+    background: rgba(33, 119, 225, 1);
+}
+.navbar.top-nav-collapse .nav.navbar-nav > li a {
+    color: #2177e1;
+    background: white;
+}
+.navbar:not(.top-nav-collapse) .logo {
+    display: none;
+}
+.logo {
+    height: 75px;
+    width: auto;
+    float: left;
+}
+.logo-big {
+    height: 300px;
+    width: auto;
+    overflow: auto;
+    display: block;
+    margin-left: 125px;
+}
+.nav.navbar-nav {
+    float: right;
+    height: 75px;
+    margin: 0;
+    font-family: noodle !important;
+    font-size: 25px;
+    cursor: pointer;
+    padding-top: 15px;
+    box-sizing: border-box;
+    letter-spacing: 3px;
+}
+.nav.navbar-nav > li a, nav.navbar-nav > li, .navbar-nav > li a:focus {
+    float: right;
+    list-style: none;
+    margin-left: 25px;
+    padding: 10px 15px;
+    color: white;
+    display: block;
+}
+.top-nav-collapse.navbar-nav > .active > a {
+  color: #2177e1 !important;
+  background: white !important;
+}
+.navbar-nav > .active > a {
+  color: white !important;
+  background: inherit !important;
+}
+.nav.navbar-nav > li a:hover {
+    background: #e14521 !important;
+    color: white !important;
+}
+#hero-call h2 {
+    background: #e14521;
+    color: white;
+    font-size: 50px;
+    font-family: noodle;
+    letter-spacing: 2px;
+    margin-top: 50px;
+    margin-bottom: 0px;
+    padding: 20px;
+    overflow: auto;
+    display: inline-block;
+}
+#hero-call .half-right h2 {
+    background: none;
+    margin: 0;
+    text-align: center;
+}
+#hero-form {
+    width: 25%;
+    position: absolute;
+    bottom: 0;
+    right: 40px;
+    /*right: 50%;
+    margin-right: -40%;*/
+
+    font-family: noodle;
+    background: rgba(33, 119, 225, 1);
+    padding: 40px;
+    overflow: auto;
+}
+#hero-form h2 {
+    padding-top: 0px;
+    padding-bottom: 40px;
+}
+#hero-form input[type="text"] {
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    color: #2177e1;
+    clear: both;
+    float: right;
+    width: 100%;
+    margin-bottom: 20px;
+    font-family: noodle;
+}
+#hero-form input[type="submit"] {
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    width: 100%;
+    background: #e14521;
+    color: white;
+    font-family: noodle;
+    cursor: pointer;
+}
+.half-left {
+    width: 50%;
+    float: left;
+}
+.half-right {
+    width: 50%;
+    float: right;
+}
+.about-section, .branding-section {
+    height: 100%;
+    padding-top: 150px;
+    text-align: center;
+    background: #fff;
+}
+.demo-section, .contact-section {
+    height: 100%;
+    padding-top: 150px;
+    text-align: center;
+    background: #eee;
+}
