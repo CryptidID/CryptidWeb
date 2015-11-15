@@ -352,6 +352,7 @@ section {
   float: left;
   clear: both;
   width: 100%;
+  overflow-y: hidden; /* Turning off vertical scrollbar */
 }
 
 .form-img {
@@ -376,6 +377,7 @@ section {
 
 .demo-section{
     text-align: center;
+    overflow-y: hidden; /* Turning off vertical scrollbar */
 }
 
 .demo-section, .contact-section {
@@ -384,7 +386,7 @@ section {
 }
 
 #id-form-right {
-
+  margin-bottom: 5vmin;
 }
 
 .about-section {
