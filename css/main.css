@@ -5,6 +5,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'gravity';
     src: url('../fonts/gravity-bold-webfont.eot');
@@ -16,6 +17,7 @@
     font-weight: bold;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'gravity';
     src: url('../fonts/gravity-book-webfont.eot');
@@ -28,14 +30,24 @@
     font-style: normal;
 
 }
+
 html,
 body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    font-family: gravity;
+    font-family: gravity !important;
 }
+
+h1 {
+  font-family: noodle;
+}
+
+p {
+  font-size: 20px;
+}
+
 @media(min-width:767px) {
     .navbar {
         padding: 20px 0;
@@ -48,6 +60,17 @@ body {
         padding: 0;
     }
 }
+
+section {
+  overflow: auto;
+  height: auto !important;
+}
+
+.upload-fp {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 #header {
     display: block;
     overflow: auto;
@@ -61,11 +84,11 @@ body {
     border-bottom: 1px solid rgba(0, 0, 0, .5);
 }
 #hero {
-    background: url('../img/bg-2.jpg') center;
-    width: 100%;
-    height: 100%;
-    background-position: cover;
+    background: url('../img/bg-2-min.jpg') center;
+    height: 100% !important;
+    background-size: cover;
     padding-top: 145px;
+    padding: 0px;
 }
 #hero-call {
     width: 100%;
@@ -179,7 +202,7 @@ body {
     margin-bottom: 20px;
     font-family: noodle;
 }
-#hero-form input[type="submit"] {
+#hero-form input[type="submit"], #id-form-right input[type="submit"] {
     padding: 10px;
     font-size: 20px;
     border: none;
@@ -189,6 +212,144 @@ body {
     font-family: noodle;
     cursor: pointer;
 }
+
+#id-form{
+    font-family: noodle;
+    font-size:20px;
+    color:black;
+    text-align: left;
+    overflow: hidden;
+    padding-left: 3vmin;
+    width: 80%;
+    float: right;
+}
+
+#id-form input[name="dac"], #id-form input[name="dad"], #id-form input[name="dcs"] {
+  float: left;
+  padding-bottom: 0;
+}
+
+#id-form input[name="dcs"] {
+  clear: both;
+}
+
+#id-form table {
+  float: left;
+  clear: both;
+}
+
+#id-form h2 {
+    font-size: 1.15vw;  /* was 30px */
+    padding-top: 0px;
+    padding-bottom: 10px;
+}
+
+#id-form input, #id-form select {
+  font-size: 2vmin;
+  font-family: noodle;
+  color:black;
+  border: none;
+  background: rgba(255, 255, 255, .75);
+  padding : .15vmin;
+}
+
+#id-form input[type="text"]{
+  margin-bottom: .5vmin;
+  color:black;
+}
+
+#id-form input[type="date"]{
+  max-width:16vmin;
+  line-height: .75;
+}
+
+#id-form input[type="number"]{
+  max-width: 9vmin;
+}
+
+#id-form input[type="text"].thirty{
+  width: 30%;
+}
+
+#id-form input[type="text"].eighty{
+  width: 80%;
+}
+
+#id-form input[type="text"].sixty{
+  width: 60%;
+}
+
+#id-form input[type="submit"]{
+  padding: 10px;
+  font-size: 1vw; /* was 20px */
+  border: none;
+  width:50%;
+  background: #e14521;
+  color: white;
+  font-family: noodle;
+  margin-left: 10%;
+}
+
+#id-form table td {
+  padding-right: 1vmin;
+}
+
+.id-header {
+  padding-top: 1vmin;
+  font-size: 2.5vmin;
+  color: red;
+}
+
+.form-head {
+  padding-left: 20px;
+  padding-top: .5vmin;
+  padding-bottom: .5vmin;
+  font-size: 30px;
+  overflow: auto;
+  width: 100%;
+  -webkit-border-top-left-radius: 20px;
+  -webkit-border-top-right-radius: 20px;
+  -moz-border-radius-topleft: 20px;
+  -moz-border-radius-topright: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background: url("../img/id-top-header-bg.png");
+  background-repeat: repeat;
+}
+
+.form-head img {
+  margin-left: -1vmin;
+  float: left;
+}
+
+.id-form {
+  margin-top: 15px;
+}
+
+.form-body {
+  padding: 4vmin;
+  background: url('../img/form-bg.png');
+  overflow: auto;
+  -webkit-border-bottom-right-radius: 20px;
+  -webkit-border-bottom-left-radius: 20px;
+  -moz-border-radius-bottomright: 20px;
+  -moz-border-radius-bottomleft: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.address-fields {
+  overflow: auto;
+  float: left;
+  clear: both;
+  width: 100%;
+}
+
+.form-img {
+  float:left;
+  max-width: 20%;
+}
+
 .half-left {
     width: 50%;
     float: left;
@@ -207,5 +368,59 @@ body {
     height: 100%;
     padding-top: 150px;
     text-align: center;
-    background: #eee;
+}
+
+#id-form-right {
+
+}
+
+.about-section {
+  background: white;
+}
+
+h1.section-header {
+  font-size: 50px;
+  background: #e14521;
+  color: white;
+  width: auto;
+  overflow: auto;
+  display: inline-block;
+  padding: 20px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.reason {
+  font-size: 20px;
+  font-family: gravity;
+  color: black;
+  line-height: 2;
+  margin-top: 10px;
+}
+
+.reason.summary {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.reason-body {
+  padding: 20px;
+  background-color: #2177e1;
+  color: white;
+  line-height: 2;
+}
+
+.reason-body > h2 {
+  font-family: noodle;
+  letter-spacing: 2px;
+  font-size: 30px;
+}
+
+.equal, .equal > div[class*='col-'] {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex:1 0 auto;
 }
