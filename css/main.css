@@ -65,10 +65,12 @@ a:hover {
 
 .nav a, .logo a {
 	text-decoration: none;
+	padding: 0;
 }
 
 .navbar-header  > a:hover {
 	background: none;
+	padding: 0;
 }
 
 @media(min-width:767px) {
@@ -263,6 +265,11 @@ nav.navbar-nav > li,
   padding-bottom: 40px;
 }
 
+#hero-form > a {
+  width: 100%;
+  padding: 0;
+}
+
 #hero-form input[type="text"] {
   border: none;
   padding: 10px;
@@ -276,7 +283,7 @@ nav.navbar-nav > li,
 }
 
 
-input[type="submit"] {
+input[type="submit"], button.submit {
   padding: 10px;
   font-size: 20px;
   border: none;
@@ -340,7 +347,7 @@ input[type="submit"] {
 #id-form-right input[type="password"] {
   font-size: 16px;
   font-family: gravity;
-  width: 75%;
+  width: 100%;
   padding: 10px;
   margin-bottom: 10px;
 }
@@ -386,6 +393,10 @@ input[type="submit"] {
   color: red;
 }
 
+.id-form-wrapper {
+	margin-bottom: 30px;
+}
+
 .id-form-wrapper .form-head {
   padding-left: 20px;
   padding-top: .5vmin;
@@ -394,6 +405,7 @@ input[type="submit"] {
   overflow: auto;
   width: 100%;
   -webkit-border-top-left-radius: 20px;
+  -webkit-border-top-right-radius: 20px;
   -webkit-border-top-right-radius: 20px;
   -moz-border-radius-topleft: 20px;
   -moz-border-radius-topright: 20px;
