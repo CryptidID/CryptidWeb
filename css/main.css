@@ -52,6 +52,25 @@ input {
   font-family: gravity;
 }
 
+a, a:visited, a:active, a:link {
+    color: white;
+	text-decoration: underline;
+}
+
+a:hover {
+    padding: 5px;
+	background: #e14521;
+	text-decoration: none;
+}
+
+.nav a, .logo a {
+	text-decoration: none;
+}
+
+.navbar-header  > a:hover {
+	background: none;
+}
+
 @media(min-width:767px) {
   .navbar {
     padding: 20px 0;
@@ -627,10 +646,13 @@ h1.section-header {
   border-color: #2177e1;
   margin: 10px;
   width:100%;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .how-it-works-section .step.last{
   padding-bottom: 6px;
+  display: inline-block;
 }
 
 .bubble-bottom {
