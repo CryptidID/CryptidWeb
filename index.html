@@ -94,7 +94,7 @@
                <div class="reason col-md-4 ">
                   <div class="reason-body">
                      <h2>Multiple Factors</h2>
-                     Crytpid uses three factor authentication to assure you are who you say you are. Traditional identification methods only require one factor of authentication which is the card that you have. Crytpid gives you the ability to use all three. The unique identifier is something you have, the password is something you know and your fingerprint is something you are. <a href="https://en.wikipedia.org/wiki/Multi-factor_authentication">Learn more about multi factor authentication</a>
+                     Cryptid uses three factor authentication to assure you are who you say you are. Traditional identification methods only require one factor of authentication which is the card that you have. Cryptid gives you the ability to use all three. The unique identifier is something you have, the password is something you know and your fingerprint is something you are. <a href="https://en.wikipedia.org/wiki/Multi-factor_authentication">Learn more about multi factor authentication</a>
                   </div>
                </div>
                <div class="reason col-md-4">
@@ -115,13 +115,13 @@
                  <div class="step bubble-bottom">
                    <h3>Fill out the form</h3>
                    <p>
-                     To begin, we take the data provided in the form and package it into a compact format readable by our systems and generate your Cryptid ID.
+                     To begin, we take the data provided in the form and package it into a compact format readable by our systems and generate your Cryptid identification data.
                    </p>
                  </div>
                  <div class="step bubble-bottom">
                    <h3>Encrypted and Signed</h3>
                    <p>
-                     All of your data is encrypted with the provided password. It is important that you do not forget this password as there is no way to recover it. We also have a "password of our own" (a private key) that is used to sign the data to prevent any counterfeit IDs.
+                     All of your data is encrypted with the provided password. It is important that you do not forget this password as there is no way to recover it. We also have a "password of our own" (a private key) that is used to sign the data to prevent any counterfeit identification data.
                    </p>
                  </div>
                  <div class="step bubble-bottom">
@@ -133,7 +133,7 @@
                  <div class="step last">
                    <h3>Get your ID location</h3>
                    <p>
-					You are then given a unique identification number that points to your information on the block chain and can be stored on almost anything from magnetic stripes to QR codes. We currently use QR codes to store this on our standard issue IDs.
+					You are then given a unique identification number that points to your information on the block chain and can be stored on almost anything from magnetic stripes to QR codes. We currently use QR codes to store this on our standard issue identification cards.
                    </p>
                  </div>
                </div>
@@ -182,7 +182,18 @@
                                    <select style="color:black" name="day">
                                       <option value="1">BRO</option>
                                       <option value="2">BLU</option>
-                                   </select>
+                                      <option value="3">BLK</option>
+                                      <option value="4">GRY</option>
+									<option value="5">GRN</option>
+									<option value="6">HAZ</option>
+									<option value="7">MAR</option>
+									<option value="8">PNK</option>
+									<option value="9">DIC</option>
+									<option value="10">UNK</option>
+					
+
+
+				   </select>
                                 </td>
                                 <td>
                                    <input type="number" name="dau">
@@ -204,8 +215,8 @@
                  </div>
               </div>
               <div id="id-form-right" class="id-form col-lg-4">
-                 <p>Fill out this card and upload your fingerprints to register your free virtual Cryptid ID!</p>
-                 <img src="img/upload-fp.png" class="upload-fp responsive-img" />
+                 <p>Fill out this card and upload your fingerprints to register your free virtual Cryptid identification card!</p>
+				 <input type="file" class="upload-fp filestyle" data-classButton="file-button" data-input="true" data-classIcon="icon-plus" data-buttonText="Upload Your Fingerprint" name="fingerprint">
                  <input type="password" name="password" placeholder="Password">
                  <input type="password" name="verify-password" placeholder="Verify Password">
                  <input type="submit" class="hvr-buzz-out" value="Register Your ID Now!">
@@ -245,6 +256,7 @@
       <script src="js/jquery.js"></script>
 	  
       <script src="js/bootstrap.min.js"></script>
+	  <script src="js/bootstrap-filestyle.min.js"></script>
 	  
       <script src="js/jquery.easing.min.js"></script>
       <script src="js/scrolling-nav.js"></script>
