@@ -300,6 +300,23 @@ button.submit,
 .bootstrap-filestyle .btn {
     width: auto;
 }
+
+#verify-id-form {
+    font-family: noodle;
+    font-size: 20px;
+    color: black;
+    padding-left: 3vmin;
+    width: 100%;
+    float: left;
+}
+
+#verify-id-form input {
+    font-size: 4vmin;
+    font-family: noodle;
+    padding: .25vmin;
+    line-height: 1.25;
+}
+
 #id-form {
     font-family: noodle;
     font-size: 20px;
@@ -444,7 +461,7 @@ button.submit,
     text-align: center;
     overflow-y: hidden;
     /* Turning off vertical scrollbar */
-    
+
     ;
 }
 .demo-section,

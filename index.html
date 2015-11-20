@@ -6,15 +6,15 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="description" content="">
       <meta name="author" content="">
-	  <link rel="icon" type="image/png" href="img/favicon.ico">
-	  
+	  <link rel="icon" type="image/png" href="static/img/favicon.ico">
+
       <title>Cryptid</title>
-	  
-      <link href="css/bootstrap.min.css" rel="stylesheet">
-	  
-      <link href="css/normalize.css" rel="stylesheet">
-      <link href="css/hover-min.css" rel="stylesheet">
-      <link href="css/main.css" rel="stylesheet">
+
+      <link href="static/css/bootstrap.min.css" rel="stylesheet">
+
+      <link href="static/css/normalize.css" rel="stylesheet">
+      <link href="static/css/hover-min.css" rel="stylesheet">
+      <link href="static/css/main.css" rel="stylesheet">
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -30,7 +30,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>
-            <a class="hvr-float-shadow hvr-bob page-scroll" href="#hero"><img class="logo" src="img/cryptid-logo-web-white.png"/></a>
+            <a class="hvr-float-shadow hvr-bob page-scroll" href="#hero"><img class="logo" src="static/img/cryptid-logo-web-white.png"/></a>
          </div>
          <div id="Site-Navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -44,7 +44,7 @@
                   <a class="page-scroll" href="#how-it-works">How It Works</a>
                </li>
                <li class="hvr-pop">
-                  <a class="page-scroll" href="#demo">Register</a>
+                  <a class="page-scroll" href="#demo">Request ID</a>
                </li>
                <li class="hvr-pop">
                   <a class="page-scroll" href="#contact">Contact</a>
@@ -58,7 +58,7 @@
           <div class="row">
             <div id="hero-call" class="row">
                <div class="half-left">
-                  <img class="logo-big" src="img/cryptid-logo-web-white.png"/>
+                  <img class="logo-big" src="static/img/cryptid-logo-web-white.png"/>
                   <h2>We're looking out for your identity.</h2>
                </div>
                <div class="half-right">
@@ -73,6 +73,22 @@
           </div>
         </div>
       </section>
+      <!-- QR Section -->
+      <section id="verify" class="verify-section col-xs-12">
+          <div class="container">
+              <div class="row">
+                  <h1 class="section-header">Verify Your ID</h1>
+                  <form id="verify-id-form" action="/" method="POST">
+                      <input type="text" name="chainIDBase64">
+                      <input type="password" name="password">
+                      <input type="submit" value="Verify">
+                  </form>
+                  {{ message }}
+              </div>
+          </div>
+      </section>
+
+
       <!-- About Section -->
       <section id="about" class="about-section col-xs-12">
          <div class="container">
@@ -144,14 +160,14 @@
       <section id="demo" class="demo-section col-xs-12">
          <div class="container">
            <div class="row">
-              <h1 class="section-header">Register Your ID Today</h1>
+              <h1 class="section-header">Request Your ID Today</h1>
               <div class="id-form-wrapper col-lg-8">
                  <div class="form-head">
-                    <img src="img/id-top-header.png" class="img-responsive">
+                    <img src="static/img/id-top-header.png" class="img-responsive">
                  </div>
                  <div class="form-body">
                     <div>
-                       <img src="img/id-headshot.png" class="img-responsive form-img"/>
+                       <img src="static/img/id-headshot.png" class="img-responsive form-img"/>
                        <form action="" id="id-form">
                           <input class="thirty" type="text" name="dac" placeholder="First Name">
                           <input class="thirty" type="text" name="dad" placeholder="Middle Name">
@@ -190,7 +206,7 @@
 									<option value="8">PNK</option>
 									<option value="9">DIC</option>
 									<option value="10">UNK</option>
-					
+
 
 
 				   </select>
@@ -253,13 +269,13 @@
            </div>
          </div>
       </section>
-      <script src="js/jquery.js"></script>
-	  
-      <script src="js/bootstrap.min.js"></script>
-	  <script src="js/bootstrap-filestyle.min.js"></script>
-	  
-      <script src="js/jquery.easing.min.js"></script>
-      <script src="js/scrolling-nav.js"></script>
+      <script src="static/js/jquery.js"></script>
+
+      <script src="static/js/bootstrap.min.js"></script>
+	  <script src="static/js/bootstrap-filestyle.min.js"></script>
+
+      <script src="static/js/jquery.easing.min.js"></script>
+      <script src="static/js/scrolling-nav.js"></script>
 	  <script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
