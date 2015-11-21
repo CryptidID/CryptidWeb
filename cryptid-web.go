@@ -7,14 +7,19 @@ import (
 	"net/http"
 	"html/template"
 	"log"
+	"./pkg/factom"
+	"strconv"
+	"encoding/base64"
+	"encoding/hex"
+	// "os"
 	// "net/url"
 	// "regexp" // Used in data cleaning
 	// "strings" // Used in data cleaning
 )
 
 type FormData struct {
-  FirstName string
-  LastName string
+  ChainID string
+  Password string
   Errors  map[string]string
 }
 
@@ -30,7 +35,6 @@ func init() {
 
 
 func main() {
-    //http.HandleFunc("/", sayhelloName) // setting router rule
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
     http.HandleFunc("/", indexHandler)
@@ -45,21 +49,35 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	var siteMessage Message
 	siteMessage.message = "show up"
     if r.Method == "GET" {
-		var sherrifTmpl = template.New("index.html").Delims("{[{", "}]}")
-		template.Must(sherrifTmpl.ParseFiles("index.html")).ExecuteTemplate(w, "index.html", siteMessage)
+		var sherrifTmpl = template.New("index.html")
+		template.Must(sherrifTmpl.ParseFiles("index.html")).ExecuteTemplate(w, "index.html", "")
     } else {
         r.ParseForm()
-        // logic part of log in
-        fmt.Println("username:", r.Form["chainIDBase64"])
+
+        fmt.Println("chainid:", r.Form["chainIDBase64"])
         fmt.Println("password:", r.Form["password"])
 		formData := &FormData{
-			FirstName: r.FormValue("chainIDBase64"),
-			LastName: r.FormValue("password"),
+			ChainID: r.FormValue("chainIDBase64"),
+			Password: r.FormValue("password"),
 		}
-		fmt.Println(formData.FirstName + formData.LastName + siteMessage.message)
-		// t, _ := template.ParseFiles("index.gtpl")
-        // t.Execute(w, siteMessage)
-		var sherrifTmpl = template.New("index.html").Delims("{[{", "}]}")
-		template.Must(sherrifTmpl.ParseFiles("index.html")).ExecuteTemplate(w, "index.html", siteMessage.message)
+
+		l, _ := base64.StdEncoding.DecodeString(formData.ChainID)
+		var y = hex.EncodeToString(l)
+		x, err := factom.GetAllChainEntries(y)
+		fmt.Println(y)
+		// var x *factom.Entry
+		// var err error
+		// x, err = factom.GetEntry(formData.ChainID)
+		if err != nil {
+			siteMessage.message = "Error in getting chain entries"
+		} else {
+			//siteMessage.message = string(x[0].Content[:len(x[0].Content)])
+			//siteMessage.message = string(x.Content[:len(x.Content)])
+			siteMessage.message = "Success " + strconv.Itoa(len(x))
+		}
+		//fmt.Println(string(x.Content[:len(x.Content)]))
+		//fmt.Println(string(x[0].Content[:len(x[0].Content)]))
+		var sherrifTmpl = template.New("index.html")
+		template.Must(sherrifTmpl.ParseFiles("index.html")).ExecuteTemplate(w, "index.html", siteMessage)
     }
 }

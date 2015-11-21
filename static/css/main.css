@@ -317,6 +317,10 @@ button.submit,
     line-height: 1.25;
 }
 
+#verify-id-form input[type="submit"] {
+    width: 50%;
+}
+
 #id-form {
     font-family: noodle;
     font-size: 20px;
@@ -451,12 +455,14 @@ button.submit,
     cursor: pointer;
 }
 .about-section,
-.how-it-works-section {
+.how-it-works-section,
+.verify-section {
     height: 100%;
     padding-top: 150px;
     text-align: center;
     background: #fff;
 }
+
 .demo-section {
     text-align: center;
     overflow-y: hidden;
