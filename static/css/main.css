@@ -38,9 +38,21 @@ h2 {
     display: inline-block;
 }
 p,
-.copy {
+.copy,
+.alert {
     font-size: 20px;
 }
+.camera-select select{
+    font-family: noodle;
+}
+.alert {
+    font-family: gravity;
+    margin: 0  auto;
+    margin-bottom: 20px;
+    width: 65%;
+
+}
+
 input,
 .bootstrap-filestyle .form-control {
     font-family: gravity;
@@ -154,6 +166,8 @@ section {
     width: auto;
     float: left;
 }
+
+
 .logo-big {
     height: 300px;
     width: auto;
@@ -163,7 +177,7 @@ section {
 }
 .nav.navbar-nav {
     float: right;
-    height: 75px;
+    /*height: 220px;*/
     margin: 0;
     font-family: noodle !important;
     font-size: 25px;
@@ -174,7 +188,7 @@ section {
 }
 @media(max-width:767px) {
     .nav.navbar-nav {
-        min-height: 180px;
+        height: 220px;
     }
 }
 .nav.navbar-nav > li a,
@@ -287,7 +301,8 @@ nav.navbar-nav > li,
 }
 input[type="submit"],
 button.submit,
-.bootstrap-filestyle .btn {
+.bootstrap-filestyle .btn,
+button {
     padding: 10px;
     font-size: 20px;
     border: none;
@@ -296,6 +311,10 @@ button.submit,
     color: white;
     font-family: noodle;
     cursor: pointer;
+}
+.begin-scan-button {
+    background: #2177e1;
+    margin: 5 auto;
 }
 .bootstrap-filestyle .btn {
     width: auto;
@@ -312,13 +331,43 @@ button.submit,
 
 #verify-id-form input {
     font-size: 4vmin;
+    width: 80%;
     font-family: noodle;
     padding: .25vmin;
     line-height: 1.25;
 }
 
 #verify-id-form input[type="submit"] {
+    margin-top: 20px;
     width: 50%;
+}
+
+#webcodecam-canvas {
+    display: none;
+}
+
+@media(max-width:767px) {
+    .fixed-top-center {
+        position: fixed;
+        display: none;
+        top: 0;
+        right: 0;
+        z-index: 11001;
+    }
+
+    .fixed-top-center .glyphicon {
+        font-size: 60px;
+        color: rgba(255,255,255,.8);
+    }
+
+    .show-fullscreen {
+        position: fixed;
+        top: 0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        z-index: 10000;
+    }
 }
 
 #id-form {
@@ -613,8 +662,16 @@ h1.section-header {
     color: #ADADAD;
 }
 .navbar-toggle {
-    margin: 0;
+    margin: 0 auto;
     margin-top: 15px;
+    width: 43px;;
+}
+
+@media(max-width:767px) {
+    .logo {
+        height: 60px;
+        width: auto;
+    }
 }
 .navbar-default {
     border: none;
