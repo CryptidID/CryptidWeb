@@ -1,0 +1,28 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+	  <link rel="icon" type="image/png" href="static/img/favicon.ico">
+
+      <title>Cryptid - {{.title}}</title>
+
+      <link href="public/css/bootstrap.min.css" rel="stylesheet">
+
+      <link href="public/css/normalize.css" rel="stylesheet">
+      <link href="public/css/hover-min.css" rel="stylesheet">
+      <link href="public/css/main.css" rel="stylesheet">
+      <!--[if lt IE 9] -->
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+
+      {{range .moreStyles}}
+        <link rel="stylesheet" type="text/css" href="public/{{.}}">
+      {{end}}
+      {{range .moreScripts}}
+        <script src="public/{{.}}" type="text/javascript" charset="utf-8"></script>
+      {{end}}
+   </head>
+   <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
