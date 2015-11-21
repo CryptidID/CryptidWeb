@@ -171,10 +171,10 @@
                             Results
                         </div>
                       </div>
-                      <form id="verify-id-form" action="/" method="POST">
-                          <input type="text" id="chainIDBase64" name="chainIDBase64" placeholder="Base 64 ChainID">
-                          <input type="password" name="password" placeholder="Password">
-                          <input type="submit" class="hvr-buzz-out" value="Verify">
+                      <form id="verify-id-form" method="POST">
+                          <input type="text" id="chainIDBase64" name="chainIDBase64" placeholder="ID Number (Found on your QR code)">
+                          <input type="password" id="verify-password" name="password" placeholder="Password">
+                          <input type="button" id="verify-submit" class="hvr-buzz-out" value="Verify">
                       </form>
                   </div>
                   <div>
@@ -349,5 +349,12 @@
             $('#webcodecam-canvas').toggleClass("show-fullscreen");
         }
     </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('body').animate({
+            scrollTop: $({{.location}}).offset().top
+        }, 1500);
+    });
+</script>
    </body>
 </html>

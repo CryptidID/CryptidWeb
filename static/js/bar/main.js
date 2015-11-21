@@ -237,3 +237,12 @@
         }
     });
 }).call(window.Page = window.Page || {});
+
+$(function() {
+    $('#verify-submit').click(function() {
+        alert("clicked");
+        $.getJSON("http://localhost:50404/api/candidate/GetCandidateFromChain/" + $('#chainIDBase64').val() + "/"+ $('#verify-id-form input[type="password"]').val() +"/", function( data ) {
+            alert(data.Uid);
+        });
+    });
+});

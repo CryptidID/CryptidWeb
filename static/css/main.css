@@ -300,6 +300,7 @@ nav.navbar-nav > li,
     font-family: gravity;
 }
 input[type="submit"],
+input[type="button"],
 button.submit,
 .bootstrap-filestyle .btn,
 button {
@@ -320,26 +321,23 @@ button {
     width: auto;
 }
 
-#verify-id-form {
-    font-family: noodle;
-    font-size: 20px;
-    color: black;
-    padding-left: 3vmin;
-    width: 100%;
-    float: left;
+.alert {
+    color: white;
+    webkit-border-radius: 0px;
+    moz-border-radius: 0px;
+    border-radius: 0px;
 }
 
-#verify-id-form input {
-    font-size: 4vmin;
-    width: 80%;
-    font-family: noodle;
-    padding: .25vmin;
-    line-height: 1.25;
+.alert-info {
+    background: #2177e1;
 }
 
-#verify-id-form input[type="submit"] {
-    margin-top: 20px;
-    width: 50%;
+.alert-error {
+    background: #e14521;
+}
+
+.alert-success {
+    background: #08BA02;
 }
 
 #webcodecam-canvas {
@@ -347,6 +345,10 @@ button {
 }
 
 @media(max-width:767px) {
+    .alert {
+        width: 100%;
+    }
+
     .fixed-top-center {
         position: fixed;
         display: none;
@@ -413,6 +415,8 @@ button {
     color: black;
 }
 #id-form-right input[type="password"],
+#verify-id-form input[type="text"],
+#verify-id-form input[type="password"],
 .bootstrap-filestyle .form-control {
     font-size: 16px;
     font-family: gravity;
@@ -626,7 +630,8 @@ h1.section-header {
     margin-bottom: 10px;
     border: none;
 }
-#contact-form input[type="submit"] {
+#contact-form input[type="submit"],
+#verify-id-form input[type="button"] {
     background: #2177e1;
 }
 .contact-form p {
