@@ -83,154 +83,17 @@
     // decodeLocal.addEventListener("click", function() {
     //     Page.decodeLocalImage();
     // }, false);
-    // play.addEventListener("click", function() {
-    //     if (!decoder.isInitialized()) {
-    //         scannedQR[txt] = "Scanning ...";
-    //     } else {
-    //         scannedQR[txt] = "Scanning ...";
-    //         decoder.play();
-    //     }
-    // }, false);
-    // grabImg.addEventListener("click", function() {
-    //     if (!decoder.isInitialized()) {
-    //         return;
-    //     }
-    //     var src = decoder.getLastImageSrc();
-    //     scannedImg.setAttribute("src", src);
-    // }, false);
-    // pause.addEventListener("click", function(event) {
-    //     scannedQR[txt] = "Paused";
-    //     decoder.pause();
-    // }, false);
-    // stop.addEventListener("click", function(event) {
-    //     grabImg.classList.add("disabled");
-    //     scannedQR[txt] = "Stopped";
-    //     decoder.stop();
-    // }, false);
-    Page.changeZoom = function(a) {
-        if (decoder.isInitialized()) {
-            var value = typeof a !== "undefined" ? parseFloat(a.toPrecision(2)) : zoom.value / 10;
-            zoomValue[txt] = zoomValue[txt].split(":")[0] + ": " + value.toString();
-            decoder.options.zoom = value;
-            if (typeof a != "undefined") {
-                zoom.value = a * 10;
-            }
+    play.addEventListener("click", function() {
+        if (!decoder.isInitialized()) {
+            scannedQR[txt] = "Scanning ...";
+        } else {
+            scannedQR[txt] = "Scanning ...";
+            decoder.play();
         }
-    };
-    Page.changeContrast = function() {
-        if (decoder.isInitialized()) {
-            var value = contrast.value;
-            contrastValue[txt] = contrastValue[txt].split(":")[0] + ": " + value.toString();
-            decoder.options.contrast = parseFloat(value);
-        }
-    };
-    Page.changeBrightness = function() {
-        if (decoder.isInitialized()) {
-            var value = brightness.value;
-            brightnessValue[txt] = brightnessValue[txt].split(":")[0] + ": " + value.toString();
-            decoder.options.brightness = parseFloat(value);
-        }
-    };
-    Page.changeThreshold = function() {
-        if (decoder.isInitialized()) {
-            var value = threshold.value;
-            thresholdValue[txt] = thresholdValue[txt].split(":")[0] + ": " + value.toString();
-            decoder.options.threshold = parseFloat(value);
-        }
-    };
-    Page.changeSharpness = function() {
-        if (decoder.isInitialized()) {
-            var value = sharpness.checked;
-            if (value) {
-                sharpnessValue[txt] = sharpnessValue[txt].split(":")[0] + ": on";
-                decoder.options.sharpness = [0, -1, 0, -1, 5, -1, 0, -1, 0];
-            } else {
-                sharpnessValue[txt] = sharpnessValue[txt].split(":")[0] + ": off";
-                decoder.options.sharpness = [];
-            }
-        }
-    };
-    Page.changeVertical = function() {
-        if (decoder.isInitialized()) {
-            var value = flipVertical.checked;
-            if (value) {
-                flipVerticalValue[txt] = flipVerticalValue[txt].split(":")[0] + ": on";
-                decoder.options.flipVertical = value;
-            } else {
-                flipVerticalValue[txt] = flipVerticalValue[txt].split(":")[0] + ": off";
-                decoder.options.flipVertical = value;
-            }
-        }
-    };
-    Page.changeHorizontal = function() {
-        if (decoder.isInitialized()) {
-            var value = flipHorizontal.checked;
-            if (value) {
-                flipHorizontalValue[txt] = flipHorizontalValue[txt].split(":")[0] + ": on";
-                decoder.options.flipHorizontal = value;
-            } else {
-                flipHorizontalValue[txt] = flipHorizontalValue[txt].split(":")[0] + ": off";
-                decoder.options.flipHorizontal = value;
-            }
-        }
-    };
-    Page.changeGrayscale = function() {
-        if (decoder.isInitialized()) {
-            var value = grayscale.checked;
-            if (value) {
-                grayscaleValue[txt] = grayscaleValue[txt].split(":")[0] + ": on";
-                decoder.options.grayScale = true;
-            } else {
-                grayscaleValue[txt] = grayscaleValue[txt].split(":")[0] + ": off";
-                decoder.options.grayScale = false;
-            }
-        }
-    };
-    Page.decodeLocalImage = function() {
-        if (decoder.isInitialized()) {
-            decoder.decodeLocalImage(imageUrl.value);
-        }
-        imageUrl.value = null;
-    };
-    var getZomm = setInterval(function() {
-        var a;
-        try {
-            a = decoder.getOptimalZoom();
-        } catch (e) {
-            a = 0;
-        }
-        if (!!a && a !== 0) {
-            Page.changeZoom(a);
-            clearInterval(getZomm);
-        }
-    }, 500);
-
-    function fadeOut(el, v) {
-        el.style.opacity = 1;
-        (function fade() {
-            if ((el.style.opacity -= 0.1) < v) {
-                el.style.display = "none";
-                el.classList.add("is-hidden");
-            } else {
-                requestAnimationFrame(fade);
-            }
-        })();
-    }
-
-    function fadeIn(el, v, display) {
-        if (el.classList.contains("is-hidden")) {
-            el.classList.remove("is-hidden");
-        }
-        el.style.opacity = 0;
-        el.style.display = display || "block";
-        (function fade() {
-            var val = parseFloat(el.style.opacity);
-            if (!((val += 0.1) > v)) {
-                el.style.opacity = val;
-                requestAnimationFrame(fade);
-            }
-        })();
-    }
+        $('#webcodecam-canvas').show();
+        $('.fixed-top-center').show();
+        $('#webcodecam-canvas').toggleClass("show-fullscreen");
+    }, false);
     document.querySelector('#camera-select').addEventListener('change', function() {
         if (decoder.isInitialized()) {
             decoder.stop().play();

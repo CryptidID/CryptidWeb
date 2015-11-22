@@ -1,37 +1,90 @@
+<!-- QR Section -->
 <section id="verify" class="verify-section col-xs-12">
-  <div class="container">
+    <div class="container">
     <div class="row">
-      <h1 class="section-header">Verify Your ID</h1>
-      <div class="col-cs-12">
-        <div id="camera-container-all">
-          <div id="camera-canvas-all-options">
-            <button onclick="start()" class="hvr-buzz-out begin-scan-button">Begin Scan</button>
-            <div id="camera-select-options">
-              <select class="form-control" id="camera-select"></select>
+        <h1 class="section-header">Verify Your ID</h1>
+        <div class="col-cs-12">
+            <div id="camera-container-all">
+                <div id="camera-canvas-all-options">
+                    <button  id="play" class="hvr-buzz-out begin-scan-button">Begin Scan</button>
+                    <div id="camera-select-options">
+                        <select class="form-control" id="camera-select"></select>
+                    </div>
+                </div>
+                <div class="fixed-top-center" id="stop">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
+                <div id="camera-canvas-container">
+                    <canvas width="320" height="240" id="webcodecam-canvas"></canvas>
+                </div>
             </div>
-          </div>
-          <hr>
-          <div class="fixed-top-center" onclick="abortScan()">
-            <span class="glyphicon glyphicon-remove"></span>
-          </div>
-          <div id="camera-canvas-container">
-            <canvas width="320" height="240" id="webcodecam-canvas"></canvas>
-          </div>
-          <hr>
-          <ul></ul>
-          <div class="result">
-            Results
-          </div>
+            <form id="verify-id-form" method="POST">
+                <div class="processing-verify">Processing...</div>
+                <input type="text" id="chainIDBase64" name="chainIDBase64" placeholder="ID Number (Found on your QR code)">
+                <input type="password" id="verify-password" name="password" placeholder="Password">
+                <input type="button" id="verify-submit" class="hvr-buzz-out" value="Verify">
+            </form>
+            <div class="verify-errors row">
+            </div>
+            <div class="verify-result row">
+                <div class="verify-result-wrapper col-lg-offset-2 col-lg-8">
+                    <div class="verify-head">
+                        <img src="public/img/id-top-header.png" class="img-responsive">
+                    </div>
+                    <div class="verify-body">
+                        <div>
+                            <img src="public/img/id-headshot.png" class="verify-image img-responsive verify-img"/>
+                            <form action="" id="id-form">
+                                <div class="thirty" name="dcs">Last Name</div>
+                                <div class="thirty" name="dac">First name</div>
+                                <div class="thirty" name="dad">Middle Name</div>
+
+                                <table>
+                                    <tr>
+                                        <td class="verify-header first-element">
+                                            SEX
+                                        </td>
+                                        <td class="verify-header">
+                                            EYE
+                                        </td>
+                                        <td class="verify-header">
+                                            HEIGHT
+                                        </td>
+                                        <td class="verify-header">
+                                            DOB
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="first-element">
+                                          <div style="color:black" name="dbc">
+                                            #
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <div style="color:black" name="day">
+                                            ###
+                                          </div>
+                                        </td>
+                                        <td>
+                                            <div name="dau">00</div>
+                                        </td>
+                                        <td>
+                                            <div name="dbb">00/00/0000</div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class="address-fields">
+                                    <div class="verify-header">Address</div>
+                                    <div class="eighty" name="dag">Street</div>
+                                    <span class="thirty" type="text" name="dai">City</span>
+                                    <span class="thirty" type="text" name="daj">State</span>
+                                    <span class="thirty" type="text" name="dak">Zip Code</span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <form id="verify-id-form" method="POST">
-          <input type="text" id="chainIDBase64" name="chainIDBase64" placeholder="ID Number (Found on your QR code)">
-          <input type="password" id="verify-password" name="password" placeholder="Password">
-          <input type="button" id="verify-submit" class="hvr-buzz-out" value="Verify">
-        </form>
-      </div>
-      <div>
-        {{.}}
-      </div>
     </div>
-  </div>
 </section>

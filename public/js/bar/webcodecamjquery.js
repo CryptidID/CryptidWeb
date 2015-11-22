@@ -25,7 +25,7 @@
     } : function(stream) {
         this.src = !!stream ? (window.URL || window.webkitURL).createObjectURL(stream) : new String();
     };
-    var Self, display, videoSelect, lastImageSrc, con, beepSound, w, h,
+    var Self, display, videoSelect, lastImageSrc, con, w, h,
         DecodeWorker = new Worker('js/DecoderWorker.js'),
         video = $('<video muted autoplay></video>')[0],
         sucessLocalDecode = false,
@@ -56,7 +56,6 @@
             flipVertical: false,
             flipHorizontal: false,
             zoom: -1,
-            beep: 'audio/beep.mp3',
             brightness: 0,
             autoBrightnessValue: false,
             grayScale: false,
@@ -144,12 +143,6 @@
         video.pause();
     }
 
-    function beep() {
-        if (Self.options.beep) {
-            beepSound.play();
-        }
-    }
-
     function cameraSuccess(stream) {
         localStream = stream;
         video.streamSrc(stream);
@@ -213,7 +206,6 @@
                     sucessLocalDecode = true;
                     delayBool = true;
                     delay();
-                    beep();
                     setTimeout(function() {
                         Self.options.resultFunction({
                             format: e.data.result[0].Format,
@@ -235,7 +227,6 @@
                 sucessLocalDecode = true;
                 delayBool = true;
                 delay();
-                beep();
                 setTimeout(function() {
                     Self.options.resultFunction({
                         format: 'QR Code',
@@ -414,6 +405,16 @@
                         gotSources(device);
                     });
                     videoSelect.prop('selectedIndex', videoSelect.children().length <= ind ? 0 : ind);
+                    if(videoSelect.children().length == 1){
+                        $('#camera-select-options').hide();
+                    } else if (videoSelect.children().length <= 1){
+                        $('#camera-container-all').html("<div class='alert alert-info'><strong>No Camera Found</strong> There was no camera found on the device you are using. Instead of using your camera to scan the barcode, you may use another device and paste the output into the box below.</div>");
+                    }
+                    var numberOfOptions = $("#camera-select option").length;
+                    //TODO: Handle different select options
+                    // if ($('#camera-select-options').children('option').length > 1){
+                    //     alert("hey");
+                    // }
                 }).catch(function(error) {
                     Self.options.getDevicesError(error);
                 });
@@ -421,11 +422,12 @@
                 $('<option value="true">On</option>').appendTo(videoSelect);
                 Self.options.getDevicesError(new NotSupportError('enumerateDevices Or getSources is Not supported'));
             } else {
-                throw new NotSupportError('getUserMedia is Not supported');
+                throw new NotSupportError('Media is Not supported');
             }
         } catch (error) {
             Self.options.getDevicesError(error);
         }
+
     }
 
     function gotSources(device) {
@@ -511,9 +513,6 @@
                 qrcode.sourceCanvas = display;
                 initialized = true;
                 setEventListeners();
-                if (this.options.beep) {
-                    beepSound = new Audio(this.options.beep);
-                }
                 if (this.options.decodeQRCodeRate || this.options.decodeBarCodeRate) {
                     setCallBack();
                 }

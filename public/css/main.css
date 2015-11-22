@@ -37,9 +37,11 @@ h2 {
     overflow: auto;
     display: inline-block;
 }
+
 p,
 .copy,
-.alert {
+.alert,
+.verify-result {
     font-size: 20px;
 }
 .camera-select select{
@@ -51,6 +53,25 @@ p,
     margin-bottom: 20px;
     width: 65%;
 
+}
+
+input.error {
+    border: 2px solid red;
+    border-color: red;
+    box-shadow: 0 0 10px red;
+}
+
+.error:focus {
+    border: 2px solid #9ecaed;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid #9ecaed;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
 }
 
 input,
@@ -384,12 +405,19 @@ button {
 }
 #id-form input[name="dac"],
 #id-form input[name="dad"],
-#id-form input[name="dcs"] {
+#id-form input[name="dcs"],
+.verify-body div[name="dac"],
+.verify-body div[name="dad"],
+.verify-body div[name="dcs"] {
     float: left;
     padding-bottom: 0;
 }
-#id-form input[name="dcs"] {
+#id-form input[name="dad"],
+.verify-body div[name="dac"] {
     clear: both;
+}
+.verify-body div[name="dad"] {
+  margin-left: 1vmin;
 }
 #id-form table {
     float: left;
@@ -426,6 +454,17 @@ button {
     background: #F7F7F7;
     border: none;
 }
+.verify-result {
+  font-family: gravity;
+  color: black;
+  margin: 0 auto;
+  display: none;
+}
+.processing-verify {
+  display:none;
+  font-size: 16px;
+  font-family: gravity;
+}
 #id-form input[type="date"] {
     max-width: 16vmin;
 }
@@ -454,15 +493,18 @@ button {
 #id-form table td {
     padding-right: 1vmin;
 }
-.id-header {
+.id-header,
+.verify-header {
     padding-top: 1vmin;
     font-size: 2.5vmin;
     color: red;
 }
-.id-form-wrapper {
+.id-form-wrapper,
+.verify-result-wrapper {
     margin-bottom: 30px;
 }
-.id-form-wrapper .form-head {
+.id-form-wrapper .form-head,
+.verify-result-wrapper .verify-head {
     padding-left: 20px;
     padding-top: .5vmin;
     padding-bottom: .5vmin;
@@ -479,11 +521,13 @@ button {
     background: url("../img/id-top-header-bg.png");
     background-repeat: repeat;
 }
-.id-form-wrapper .form-head img {
+.id-form-wrapper .form-head img ,
+.verify-result-wrapper .verify-head img{
     margin-left: -1vmin;
     float: left;
 }
-.id-form-wrapper .form-body {
+.id-form-wrapper .form-body ,
+.verify-result-wrapper .verify-body{
     padding: 4vmin;
     background: url('../img/form-bg.png');
     overflow: auto;
@@ -494,14 +538,24 @@ button {
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
 }
-.id-form-wrapper .address-fields {
+.verify-body td {
+  font-size: 2.3vmin;
+  padding-left: 5vmin;
+}
+.verify-body .first-element {
+  padding-left: 0vmin;
+}
+.id-form-wrapper .address-fields ,
+.verify-result-wrapper .address-fields{
     overflow: auto;
     float: left;
     clear: both;
     width: 100%;
     overflow-y: hidden;
 }
-.id-form-wrapper .form-img {
+
+.id-form-wrapper .form-img ,
+.verify-result-wrapper .verify-img{
     float: left;
     max-width: 20%;
     cursor: hand;
