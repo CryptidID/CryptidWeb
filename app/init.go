@@ -1,6 +1,16 @@
 package app
 
 import "github.com/revel/revel"
+import "net/http"
+import "io"
+import "regexp"
+import "github.com/tdewolff/minify"
+import "github.com/tdewolff/minify/css"
+import "github.com/tdewolff/minify/html"
+import "github.com/tdewolff/minify/js"
+import "github.com/tdewolff/minify/svg"
+import "github.com/tdewolff/minify/json"
+import "github.com/tdewolff/minify/xml"
 
 func init() {
 	// Filters is the default set of global filters.
@@ -17,6 +27,7 @@ func init() {
 		revel.InterceptorFilter,       // Run interceptors around the action.
 		revel.CompressFilter,          // Compress the result.
 		revel.ActionInvoker,           // Invoke the action.
+		MinifyFilter,
 	}
 
 	// register startup functions with OnAppStart
@@ -35,4 +46,31 @@ var HeaderFilter = func(c *revel.Controller, fc []revel.Filter) {
 	c.Response.Out.Header().Add("X-Content-Type-Options", "nosniff")
 
 	fc[0](c, fc[1:]) // Execute the next filter stage.
+}
+
+type MinifyResponseWriter struct {
+    http.ResponseWriter
+    io.Writer
+}
+
+func (f MinifyResponseWriter) Write(b []byte) (int, error) {
+    return f.Writer.Write(b)
+}
+
+func MinifyFilter(c *revel.Controller, fc []revel.Filter) {
+    pr, pw := io.Pipe()
+    go func(w io.Writer) {
+        m := minify.New()
+        m.AddFunc("text/css", css.Minify)
+        m.AddFunc("text/html", html.Minify)
+        m.AddFunc("text/javascript", js.Minify)
+        m.AddFunc("image/svg+xml", svg.Minify)
+        m.AddFuncRegexp(regexp.MustCompile("[/+]json$"), json.Minify)
+        m.AddFuncRegexp(regexp.MustCompile("[/+]xml$"), xml.Minify)
+
+        if err := m.Minify("mimetype", w, pr); err != nil {
+            panic(err)
+        }
+    }(c.Response.Out)
+    c.Response.Out = MinifyResponseWriter{c.Response.Out, pw}
 }
