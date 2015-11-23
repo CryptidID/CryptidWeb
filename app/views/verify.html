@@ -20,7 +20,7 @@
             </div>
             <form id="verify-id-form" method="POST">
                 <div class="processing-verify">Processing...</div>
-                <input type="text" id="chainIDBase64" name="chainIDBase64" placeholder="ID Number (Found on your QR code)">
+                <input type="text" id="chainIDBase64" name="chainIDBase64" maxlength="44" placeholder="ID Number (Found on your QR code)">
                 <input type="password" id="verify-password" name="password" placeholder="Password">
                 <input type="button" id="verify-submit" class="hvr-buzz-out" value="Verify">
             </form>

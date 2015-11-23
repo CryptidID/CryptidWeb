@@ -1,3 +1,20 @@
+jQuery["postJSON"] = function( url, data, callback ) {
+    // shift arguments if data argument was omitted
+    if ( jQuery.isFunction( data ) ) {
+        callback = data;
+        data = undefined;
+    }
+
+    return jQuery.ajax({
+        url: url,
+        type: "POST",
+        contentType:"application/json; charset=utf-8",
+        dataType: "json",
+        data: data,
+        success: callback
+    });
+};
+
 $(document).on('change', 'input', function() {
     $(this).removeClass("error");
 });
@@ -12,28 +29,42 @@ $(function() {
     });
 
     $('#verify-submit').click(function() {
+        var message = "";
         var bol = 0;
         if ($('#chainIDBase64').val().length <= 0) {
-            $('#verify-id-form input[type="password"]').removeClass("error");
+            $('#chainIDBase64').removeClass("error");
             $('#chainIDBase64').toggleClass("error");
-            bol++;
+            message = " The ID number cannot be empty"
+            bol += 1;
         } else {
             $('#chainIDBase64').removeClass("error");
+        }
+        if ($('#chainIDBase64').val().length < 44 && $('#chainIDBase64').val().length > 0) {
+          // $('#camera-container-all').html("<div class='alert alert-error'><strong>Error: </strong>Invalid ID code</div>");
+          message = " Invalid ID number, needs to be 44 characters long";
+          bol += 3;
         }
         if ($('#verify-id-form input[type="password"]').val().length <= 0) {
             $('#verify-id-form input[type="password"]').removeClass("error");
             $('#verify-id-form input[type="password"]').toggleClass("error");
-            bol++;
+            if(message != ""){
+              message += " and t"
+            } else {
+              message += " T"
+            }
+            message += "he password cannot be empty"
+            bol += 5;
         } else {
             $('#verify-id-form input[type="password"]').removeClass("error");
         }
         if (bol == 0) {
-            $(".processing-verify").show();  
-            $.getJSON("http://localhost:8080/api/candidate/GetCandidateFromChain/" + $('#chainIDBase64').val() + "/" + $('#verify-id-form input[type="password"]').val() + "/", function(data) {
+            $(".processing-verify").show();
+            $.postJSON("http://cryptid.xyz:8080/CandidateDelegate/GetCandidateFromChain/", JSON.stringify({ChainIdBase64: $('#chainIDBase64').val(), Password: $('#verify-id-form input[type="password"]').val()}), function(data) {
+
                 if (data.Error == undefined) {
                     $('.verify-errors').html("<div class='alert alert-success' width='320' height='240'><strong>Success</strong> ID has been retrieved and shown below</div>");
                     $('.verify-body div[name="dcs"]').html(data.Dcs);
-                    $('.verify-body div[name="dac"]').html(data.Dac + ",");
+                    $('.verify-body div[name="dac"]').html(data.Dac + (data.Dad != "" ? "," : ""));
                     $('.verify-body div[name="dad"]').html(data.Dad);
                     if (data.Dbc == 1) {
                         $('.verify-body div[name="dbc"]').html("M");
@@ -79,15 +110,17 @@ $(function() {
                     $('.verify-body span[name="dai"]').html(data.Dai);
                     $('.verify-body span[name="daj"]').html(data.Daj + ",");
                     $('.verify-body span[name="dak"]').html(parseInt(data.Dak.AnsiFormat)/10000);
-                    $('.verify-body .verify-image').attr("src", "data:image/bmp;base64," +data.Image);
+                    $('.verify-body .verify-image').attr("src", "data:image/jpg;base64," +data.ImageString);
                     $('#camera-container-all .alert').fadeOut(100);
                     $('.verify-result').fadeIn(100);
                 } else {
                     $('.verify-result').fadeOut(100);
-                    if((data.Error).indexOf("Padding is invalid") > 0){
+                    if(data.ErrorMessage.indexOf("PasswordIncorrectException") >= 0) {
                       $('.verify-errors').html("<div class='alert alert-error' width='320' height='240'><strong>Error Occured:</strong>There has been an error with the information provided, please ensure your password ad ChainID is correct</div>");
-                    } else if((data.Error).indexOf("valid Base-64 string") > 0){
+                    } else if(data.Error.indexOf("valid Base-64 string") >= 0) {
                       $('.verify-errors').html("<div class='alert alert-error' width='320' height='240'><strong>Error Occured:</strong>There has been an error with the ID number, please enter a valid ID number</div>");
+                    } else if(data.ErrorMessage.indexOf("FactomChainException") >= 0) {
+                      $('.verify-errors').html("<div class='alert alert-error' width='320' height='240'><strong>Error Occured:</strong>The chain was not found</div>");
 
                     } else {
                       $('.verify-errors').html("<div class='alert alert-error' width='320' height='240'><strong>Error Occured:</strong>" + data.Error + "</div>");
@@ -101,6 +134,8 @@ $(function() {
             .fail(function() {
               $('.verify-errors').html("<div class='alert alert-error' width='320' height='240'><strong>Error Occured:</strong>There seems to be a problem on our end, please let us know so we can fix it immediately.</div>");
             });
+        } else {
+           $('#camera-container-all').html("<div class='alert alert-error'><strong>Error: </strong>" + message + "</div>");
         }
     });
 });

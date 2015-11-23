@@ -391,6 +391,10 @@ button {
         height: 100%;
         z-index: 10000;
     }
+    .navbar-default .navbar-collapse,
+    .navbar-default .navbar-form {
+        padding-left: 0px !important;
+    }
 }
 
 #id-form {
@@ -402,6 +406,7 @@ button {
     padding-left: 3vmin;
     width: 80%;
     float: right;
+    margin-bottom: 0px !important;
 }
 #id-form input[name="dac"],
 #id-form input[name="dad"],
@@ -418,6 +423,11 @@ button {
 }
 .verify-body div[name="dad"] {
   margin-left: 1vmin;
+}
+.verify-body div[name="dac"],
+.verify-body div[name="dad"],
+.verify-body div[name="dcs"] {
+  font-size: 3vmin;
 }
 #id-form table {
     float: left;
@@ -735,9 +745,15 @@ h1.section-header {
 .navbar-default {
     border: none;
 }
+.navbar:not(.top-nav-collapse) .navbar-form,
+.navbar:not(.top-nav-collapse) .navbar-collapse {
+  padding-left: 0px;
+}
+
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
     border: none;
+    padding-left: 105px;
 }
 .navbar-default .navbar-toggle .icon-bar {
     background: rgba(33, 119, 225, 1);
