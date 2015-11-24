@@ -60,7 +60,6 @@ $(function() {
         if (bol == 0) {
             $(".processing-verify").show();
             $.postJSON("http://cryptid.xyz:8080/CandidateDelegate/GetCandidateFromChain/", JSON.stringify({ChainIdBase64: $('#chainIDBase64').val(), Password: $('#verify-id-form input[type="password"]').val()}), function(data) {
-
                 if (data.Error == undefined) {
                     $('.verify-errors').html("<div class='alert alert-success' width='320' height='240'><strong>Success</strong> ID has been retrieved and shown below</div>");
                     $('.verify-body div[name="dcs"]').html(data.Dcs);
@@ -115,11 +114,11 @@ $(function() {
                     $('.verify-result').fadeIn(100);
                 } else {
                     $('.verify-result').fadeOut(100);
-                    if(data.ErrorMessage.indexOf("PasswordIncorrectException") >= 0) {
+                    if(data.Error.indexOf("PasswordIncorrectException") >= 0) {
                       $('.verify-errors').html("<div class='alert alert-error' width='320' height='240'><strong>Error Occured:</strong>There has been an error with the information provided, please ensure your password ad ChainID is correct</div>");
                     } else if(data.Error.indexOf("valid Base-64 string") >= 0) {
                       $('.verify-errors').html("<div class='alert alert-error' width='320' height='240'><strong>Error Occured:</strong>There has been an error with the ID number, please enter a valid ID number</div>");
-                    } else if(data.ErrorMessage.indexOf("FactomChainException") >= 0) {
+                    } else if(data.Error.indexOf("FactomChainException") >= 0) {
                       $('.verify-errors').html("<div class='alert alert-error' width='320' height='240'><strong>Error Occured:</strong>The chain was not found</div>");
 
                     } else {
